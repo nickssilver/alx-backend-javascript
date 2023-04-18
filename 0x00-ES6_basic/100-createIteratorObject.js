@@ -1,11 +1,9 @@
 export default function createIteratorObject(report) {
-    const emps = [];
-    // eslint-disable-next-line
-      for (const dep of Object.keys(report.allEmployees)) {
-      // eslint-disable-next-line
-          for (const emp of report.allEmployees[dep]) {
-        emps.push(emp);
+  return (function* _() {
+    for (const department of Object.values(report.allEmployees)) {
+      for (const employee of department) {
+        yield employee;
       }
     }
-    return emps;
-  }
+  }());
+}
